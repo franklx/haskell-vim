@@ -14,7 +14,7 @@ endif
 syn match haskellRecordField contained containedin=haskellBlock
   \ "[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s*::\|\n\s\+::\)"
   \ contains=
-  \ haskellIdentifier,
+  \ haskellLabel,
   \ haskellOperators,
   \ haskellSeparator,
   \ haskellParens,
@@ -93,6 +93,7 @@ syn match haskellLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$"
 syn match haskellBacktick "`[A-Za-z_][A-Za-z0-9_\.']*`"
 syn region haskellString start=+"+ skip=+\\\\\|\\"+ end=+"+
   \ contains=@Spell
+syn match haskellLabel "[_a-z][a-zA-z0-9_']*" contained
 syn match haskellIdentifier "[_a-z][a-zA-z0-9_']*" contained
 syn match haskellFuncName "^\s*[_a-z][a-zA-z0-9_']*" contained
 syn match haskellChar "\<'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'\>"
@@ -135,6 +136,7 @@ highlight def link haskellBottom Macro
 highlight def link haskellTH Boolean
 highlight def link haskellBlockKeywords Structure
 highlight def link haskellIdentifier Function
+highlight def link haskellLabel Label
 highlight def link haskellFuncName Identifier
 highlight def link haskellForeignKeywords Structure
 highlight def link haskellDeriving Structure
