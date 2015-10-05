@@ -19,22 +19,22 @@ syn match haskellRecordField contained containedin=haskellBlock
   \ haskellSeparator,
   \ haskellParens,
 
-syn match haskellTypeSig
-  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s*::\|\n\s\+::\)"
-  \ contains=
-  \ haskellWhere,
-  \ haskellLet,
-  \ haskellIdentifier,
-  \ haskellOperators,
-  \ haskellSeparator,
-  \ haskellParens,
-
 syn match haskellFuncDef
   \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\s\+[^\"]*\(\s*=\|\n\s\+=\)"
   \ contains=
   \ haskellWhere,
   \ haskellLet,
   \ haskellFuncName,
+  \ haskellOperators,
+  \ haskellSeparator,
+  \ haskellParens,
+
+syn match haskellTypeSig
+  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s*::\|\n\s\+::\)"
+  \ contains=
+  \ haskellWhere,
+  \ haskellLet,
+  \ haskellIdentifier,
   \ haskellOperators,
   \ haskellSeparator,
   \ haskellParens,
