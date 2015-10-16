@@ -19,11 +19,12 @@ syn match haskellRecordField contained containedin=haskellBlock
   \ haskellSeparator,
   \ haskellParens,
 
+"  \ haskellWhere,
+"  \ haskellLet,
+
 syn match haskellFuncDef
   \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\s\+[^\"]*\(\s*=\|\n\s\+=\)"
   \ contains=
-  \ haskellWhere,
-  \ haskellLet,
   \ haskellFuncName,
   \ haskellOperators,
   \ haskellSeparator,
@@ -39,11 +40,8 @@ syn match haskellTypeSig
   \ haskellSeparator,
   \ haskellParens,
 
-syn keyword haskelLWhere where
-syn keyword haskellLet let
 syn keyword haskellDeclKeyword module class instance newtype deriving in
 syn match haskellDecl "\<\(type\|data\)\>\s\+\(\<family\>\)\?"
-syn keyword haskellDefault default
 syn keyword haskellImportKeywords import qualified safe as hiding contained
 syn keyword haskellForeignKeywords foreign export import ccall safe unsafe interruptible capi prim contained
 syn region haskellForeignImport start="\<foreign\>" end="::" keepend
@@ -93,11 +91,14 @@ syn match haskellLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$"
 syn match haskellBacktick "`[A-Za-z_][A-Za-z0-9_\.']*`"
 syn region haskellString start=+"+ skip=+\\\\\|\\"+ end=+"+
   \ contains=@Spell
-syn match haskellLabel "[_a-z][a-zA-z0-9_']*" contained
-syn match haskellIdentifier "[_a-z][a-zA-z0-9_']*" contained
-syn match haskellFuncName "^\s*[_a-z][a-zA-z0-9_']*" contained
+syn match haskellLabel "[_a-z][a-zA-z0-9_']\+" contained
+syn match haskellIdentifier "\<[_a-z][a-zA-z0-9_']\+\>" contained
+syn match haskellFuncName "^\s*\(let\s\+\|where\s\+\)*\<[_a-z][a-zA-z0-9_']\+\>" contained contains=haskellLet,haskellWhere
+syn keyword haskelLWhere where
+syn keyword haskellLet let
+syn keyword haskellDefault default
 syn match haskellChar "\<'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'\>"
-syn match haskellType "\<[A-Z][a-zA-Z0-9_']*\>"
+syn match haskellType "\<[A-Z][a-zA-Z0-9_']\+\>"
 syn region haskellBlockComment start="{-" end="-}"
   \ contains=
   \ haskellBlockComment,
