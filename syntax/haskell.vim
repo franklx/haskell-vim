@@ -91,14 +91,14 @@ syn match haskellLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$"
 syn match haskellBacktick "`[A-Za-z_][A-Za-z0-9_\.']*`"
 syn region haskellString start=+"+ skip=+\\\\\|\\"+ end=+"+
   \ contains=@Spell
-syn match haskellLabel "[_a-z][a-zA-z0-9_']\+" contained
-syn match haskellIdentifier "\<[_a-z][a-zA-z0-9_']\+\>" contained
-syn match haskellFuncName "^\s*\(let\s\+\|where\s\+\)*\<[_a-z][a-zA-z0-9_']\+\>" contained contains=haskellLet,haskellWhere
+syn match haskellLabel "[_a-z][a-zA-z0-9_']*" contained
+syn match haskellIdentifier "\<[_a-z][a-zA-z0-9_']*\>" contained
+syn match haskellFuncName "^\s*\(let\s\+\|where\s\+\)*\<[_a-z][a-zA-z0-9_']*\>" contained contains=haskellLet,haskellWhere
 syn keyword haskelLWhere where
 syn keyword haskellLet let
 syn keyword haskellDefault default
 syn match haskellChar "\<'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'\>"
-syn match haskellType "\<[A-Z][a-zA-Z0-9_']\+\>"
+syn match haskellType "\<[A-Z][a-zA-Z0-9_']*\>"
 syn region haskellBlockComment start="{-" end="-}"
   \ contains=
   \ haskellBlockComment,
