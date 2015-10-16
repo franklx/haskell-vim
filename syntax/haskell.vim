@@ -23,7 +23,7 @@ syn match haskellRecordField contained containedin=haskellBlock
 "  \ haskellLet,
 
 syn match haskellFuncDef
-  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\(\s\+[^\"]+\)*\(\s\+=\|\n\s\+=\)"
+  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*.*\(\s\+=\|\n\s\+=\)"
   \ contains=
   \ haskellFuncName,
   \ haskellOperators,
