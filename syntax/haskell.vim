@@ -15,28 +15,12 @@ syn spell notoplevel
 syn match haskellRecordField contained containedin=haskellBlock
   \ "[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s*::\|\n\s\+::\)"
   \ contains=
-  \ haskellLabel,
+  \ haskellIdentifier,
   \ haskellOperators,
   \ haskellSeparator,
-  \ haskellParens,
-
-"  \ haskellWhere,
-"  \ haskellLet,
-
-syn match haskellFuncDef
-  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']\+[^\"]*\(\s\+=\|\n\s\+=\)"
-  \ contains=
-  \ haskellFuncName,
-  \ haskellOperators,
-  \ haskellSeparator,
-<<<<<<< HEAD
-  \ haskellParens,
-
-=======
   \ haskellParens
->>>>>>> upstream/master
 syn match haskellTypeSig
-  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s\+::\|\n\s\+::\)"
+  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s*::\|\n\s\+::\)"
   \ contains=
   \ haskellWhere,
   \ haskellLet,
@@ -44,16 +28,12 @@ syn match haskellTypeSig
   \ haskellIdentifier,
   \ haskellOperators,
   \ haskellSeparator,
-<<<<<<< HEAD
-  \ haskellParens,
-
-=======
   \ haskellParens
 syn keyword haskelLWhere where
 syn keyword haskellLet let
->>>>>>> upstream/master
 syn keyword haskellDeclKeyword module class instance newtype deriving in
 syn match haskellDecl "\<\(type\|data\)\>\s\+\(\<family\>\)\?"
+syn keyword haskellDefault default
 syn keyword haskellImportKeywords import qualified safe as hiding contained
 syn keyword haskellForeignKeywords foreign export import ccall safe unsafe interruptible capi prim contained
 syn region haskellForeignImport start="\<foreign\>" end="::" keepend
@@ -79,15 +59,9 @@ syn keyword haskellConditional if then else
 syn match haskellNumber "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>\|\<0[bB][10]\+\>"
 syn match haskellFloat "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
 syn match haskellSeparator  "[,;]"
-<<<<<<< HEAD
-syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,haskellFuncDef
-syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,haskellFuncDef
-syn region haskellBlock matchgroup=haskellDelimiter start="{" end="}" contains=TOP
-=======
 syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,@Spell
 syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
 syn region haskellBlock matchgroup=haskellDelimiter start="{" end="}" contains=TOP,@Spell
->>>>>>> upstream/master
 syn keyword haskellInfix infix infixl infixr
 syn keyword haskellBottom undefined error
 syn match haskellOperators "[-!#$%&\*\+/<=>\?@\\^|~:.]\+\|\<_\>"
@@ -109,12 +83,7 @@ syn match haskellLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$"
 syn match haskellBacktick "`[A-Za-z_][A-Za-z0-9_\.']*`"
 syn region haskellString start=+"+ skip=+\\\\\|\\"+ end=+"+
   \ contains=@Spell
-syn match haskellLabel "[_a-z][a-zA-z0-9_']*" contained
-syn match haskellIdentifier "\<[_a-z][a-zA-z0-9_']*\>" contained
-syn match haskellFuncName "^\s*\(let\s\+\|where\s\+\)*\<[_a-z][a-zA-z0-9_']*\>" contained contains=haskellLet,haskellWhere
-syn keyword haskelLWhere where
-syn keyword haskellLet let
-syn keyword haskellDefault default
+syn match haskellIdentifier "[_a-z][a-zA-z0-9_']*" contained
 syn match haskellChar "\<'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'\>"
 syn match haskellType "\<[A-Z][a-zA-Z0-9_']*\>"
 syn region haskellBlockComment start="{-" end="-}"
@@ -153,14 +122,7 @@ endif
 
 highlight def link haskellBottom Macro
 highlight def link haskellTH Boolean
-<<<<<<< HEAD
-highlight def link haskellBlockKeywords Structure
-highlight def link haskellIdentifier Function
-highlight def link haskellLabel Label
-highlight def link haskellFuncName Identifier
-=======
 highlight def link haskellIdentifier Identifier
->>>>>>> upstream/master
 highlight def link haskellForeignKeywords Structure
 highlight def link haskellKeyword Keyword
 highlight def link haskellDefault Keyword
