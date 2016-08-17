@@ -19,6 +19,16 @@ syn match haskellRecordField contained containedin=haskellBlock
   \ haskellOperators,
   \ haskellSeparator,
   \ haskellParens
+syn match haskellFuncDef
+  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']\+[^=]*\(\s\+=\|\n\s\+=\)\([^=]\|\n\)"
+  \ contains=
+  \ haskellDefault,
+  \ haskellFuncName,
+  \ haskellOperators,
+  \ haskellSeparator,
+  \ haskellParens,
+  \ haskellBrackets,
+  \ haskellString
 syn match haskellTypeSig
   \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s*::\|\n\s\+::\)"
   \ contains=
@@ -59,8 +69,8 @@ syn keyword haskellConditional if then else
 syn match haskellNumber "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>\|\<0[bB][10]\+\>"
 syn match haskellFloat "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
 syn match haskellSeparator  "[,;]"
-syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,@Spell
-syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
+syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,haskellFuncDef,@Spell
+syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,haskellFuncDef,@Spell
 syn region haskellBlock matchgroup=haskellDelimiter start="{" end="}" contains=TOP,@Spell
 syn keyword haskellInfix infix infixl infixr
 syn keyword haskellBottom undefined error
@@ -84,6 +94,7 @@ syn match haskellBacktick "`[A-Za-z_][A-Za-z0-9_\.']*`"
 syn region haskellString start=+"+ skip=+\\\\\|\\"+ end=+"+
   \ contains=@Spell
 syn match haskellIdentifier "[_a-z][a-zA-z0-9_']*" contained
+syn match haskellFuncName "^\s*\(let\s\+\|where\s\+\)*\<[_a-z][a-zA-z0-9_']*\>" contained contains=haskellLet,haskellWhere
 syn match haskellChar "\<'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'\>"
 syn match haskellType "\<[A-Z][a-zA-Z0-9_']*\>"
 syn region haskellBlockComment start="{-" end="-}"
@@ -122,7 +133,8 @@ endif
 
 highlight def link haskellBottom Macro
 highlight def link haskellTH Boolean
-highlight def link haskellIdentifier Identifier
+highlight def link haskellIdentifier Function
+highlight def link haskellFuncName Identifier
 highlight def link haskellForeignKeywords Structure
 highlight def link haskellKeyword Keyword
 highlight def link haskellDefault Keyword
