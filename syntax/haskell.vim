@@ -11,6 +11,7 @@ elseif exists("b:current_syntax")
   finish
 endif
 
+syn spell notoplevel
 syn match haskellRecordField contained containedin=haskellBlock
   \ "[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s*::\|\n\s\+::\)"
   \ contains=
@@ -28,18 +29,29 @@ syn match haskellFuncDef
   \ haskellFuncName,
   \ haskellOperators,
   \ haskellSeparator,
+<<<<<<< HEAD
   \ haskellParens,
 
+=======
+  \ haskellParens
+>>>>>>> upstream/master
 syn match haskellTypeSig
   \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\(\s\+::\|\n\s\+::\)"
   \ contains=
   \ haskellWhere,
   \ haskellLet,
+  \ haskellDefault,
   \ haskellIdentifier,
   \ haskellOperators,
   \ haskellSeparator,
+<<<<<<< HEAD
   \ haskellParens,
 
+=======
+  \ haskellParens
+syn keyword haskelLWhere where
+syn keyword haskellLet let
+>>>>>>> upstream/master
 syn keyword haskellDeclKeyword module class instance newtype deriving in
 syn match haskellDecl "\<\(type\|data\)\>\s\+\(\<family\>\)\?"
 syn keyword haskellImportKeywords import qualified safe as hiding contained
@@ -58,8 +70,8 @@ syn match haskellImport "^\<import\>\s\+\(\<safe\>\s\+\)\?\(\<qualified\>\s\+\)\
   \ haskellType,
   \ haskellLineComment,
   \ haskellBlockComment,
-  \ haskellPragma,
-syn keyword haskellStatement do case of
+  \ haskellPragma
+syn keyword haskellKeyword do case of
 if exists('g:haskell_enable_static_pointers') && g:haskell_enable_static_pointers == 1
   syn keyword haskellStatic static
 endif
@@ -67,9 +79,15 @@ syn keyword haskellConditional if then else
 syn match haskellNumber "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>\|\<0[bB][10]\+\>"
 syn match haskellFloat "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
 syn match haskellSeparator  "[,;]"
+<<<<<<< HEAD
 syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,haskellFuncDef
 syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,haskellFuncDef
 syn region haskellBlock matchgroup=haskellDelimiter start="{" end="}" contains=TOP
+=======
+syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,@Spell
+syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
+syn region haskellBlock matchgroup=haskellDelimiter start="{" end="}" contains=TOP,@Spell
+>>>>>>> upstream/master
 syn keyword haskellInfix infix infixl infixr
 syn keyword haskellBottom undefined error
 syn match haskellOperators "[-!#$%&\*\+/<=>\?@\\^|~:.]\+\|\<_\>"
@@ -135,24 +153,25 @@ endif
 
 highlight def link haskellBottom Macro
 highlight def link haskellTH Boolean
+<<<<<<< HEAD
 highlight def link haskellBlockKeywords Structure
 highlight def link haskellIdentifier Function
 highlight def link haskellLabel Label
 highlight def link haskellFuncName Identifier
+=======
+highlight def link haskellIdentifier Identifier
+>>>>>>> upstream/master
 highlight def link haskellForeignKeywords Structure
-highlight def link haskellDeriving Structure
-highlight def link haskellStatement Statement
-highlight def link haskellDefault Statement
+highlight def link haskellKeyword Keyword
+highlight def link haskellDefault Keyword
 highlight def link haskellConditional Conditional
 highlight def link haskellNumber Number
 highlight def link haskellFloat Float
 highlight def link haskellSeparator Delimiter
 highlight def link haskellDelimiter Delimiter
-highlight def link haskellInfix PreProc
+highlight def link haskellInfix Keyword
 highlight def link haskellOperators Operator
 highlight def link haskellQuote Operator
-highlight def link haskellQuotedType Include
-highlight def link haskellType Include
 highlight def link haskellShebang Comment
 highlight def link haskellLineComment Comment
 highlight def link haskellBlockComment Comment
@@ -160,34 +179,56 @@ highlight def link haskellPragma SpecialComment
 highlight def link haskellString String
 highlight def link haskellChar String
 highlight def link haskellBacktick Operator
-highlight def link haskellPreProc Macro
-highlight def link haskellTodo Todo
-highlight def link haskellAssocType Structure
-highlight def link haskellImportBlock Delimiter
-highlight def link haskellImportKeywords Structure
-highlight def link haskellDeclKeyword Structure
-highlight def link haskellDecl Structure
-highlight def link haskellWhere Structure
-highlight def link haskellLet Structure
 highlight def link haskellQuasiQuoted String
+highlight def link haskellTodo Todo
+if exists('g:haskell_classic_highlighting') && g:haskell_classic_highlighting == 1
+  highlight def link haskellPreProc PreProc
+  highlight def link haskellAssocType Type
+  highlight def link haskellImportKeywords Include
+  highlight def link haskellDeclKeyword Keyword
+  highlight def link haskellDecl Keyword
+  highlight def link haskellWhere Keyword
+  highlight def link haskellLet Keyword
+  highlight def link haskellQuotedType Type
+  highlight def link haskellType Type
+else
+  highlight def link haskellPreProc Macro
+  highlight def link haskellAssocType Structure
+  highlight def link haskellImportKeywords Structure
+  highlight def link haskellDeclKeyword Structure
+  highlight def link haskellDecl Structure
+  highlight def link haskellWhere Structure
+  highlight def link haskellLet Structure
+  highlight def link haskellQuotedType Include
+  highlight def link haskellType Include
+endif
 
 if exists('g:haskell_enable_quantification') && g:haskell_enable_quantification == 1
   highlight def link haskellForall Operator
 endif
 if exists('g:haskell_enable_recursivedo') && g:haskell_enable_recursivedo == 1
-  highlight def link haskellRecursiveDo Operator
+  highlight def link haskellRecursiveDo Keyword
 endif
 if exists('g:haskell_enable_arrowsyntax') && g:haskell_enable_arrowsyntax == 1
-  highlight def link haskellArrowSyntax Operator
-endif
-if exists('g:haskell_enable_pattern_synonyms') && g:haskell_enable_pattern_synonyms == 1
-  highlight def link haskellPatternKeyword Structure
-endif
-if exists('g:haskell_enable_typeroles') && g:haskell_enable_typeroles == 1
-  highlight def link haskellTypeRoles Structure
+  highlight def link haskellArrowSyntax Keyword
 endif
 if exists('g:haskell_enable_static_pointers') && g:haskell_enable_static_pointers == 1
-  highlight def link haskellStatic Statement
+  highlight def link haskellStatic Keyword
+endif
+if exists('g:haskell_classic_highlighting') && g:haskell_classic_highlighting == 1
+  if exists('g:haskell_enable_pattern_synonyms') && g:haskell_enable_pattern_synonyms == 1
+    highlight def link haskellPatternKeyword Keyword
+  endif
+  if exists('g:haskell_enable_typeroles') && g:haskell_enable_typeroles == 1
+    highlight def link haskellTypeRoles Keyword
+  endif
+else
+  if exists('g:haskell_enable_pattern_synonyms') && g:haskell_enable_pattern_synonyms == 1
+    highlight def link haskellPatternKeyword Structure
+  endif
+  if exists('g:haskell_enable_typeroles') && g:haskell_enable_typeroles == 1
+    highlight def link haskellTypeRoles Structure
+  endif
 endif
 
 let b:current_syntax = "haskell"
