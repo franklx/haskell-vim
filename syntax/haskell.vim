@@ -20,7 +20,7 @@ syn match haskellRecordField contained containedin=haskellBlock
   \ haskellSeparator,
   \ haskellParens
 syn match haskellFuncDef
-  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']\+[^=]*\(\s\+=\|\n\s\+=\)\([^=]\|\n\)"
+  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']\+[^=]*\(\s\+=\|\n\s\+=\)\([^=></:\|\n\)"
   \ contains=
   \ haskellDefault,
   \ haskellFuncName,
@@ -39,7 +39,7 @@ syn match haskellTypeSig
   \ haskellOperators,
   \ haskellSeparator,
   \ haskellParens
-syn keyword haskelLWhere where
+syn keyword haskellWhere where
 syn keyword haskellLet let
 syn keyword haskellDeclKeyword module class instance newtype deriving in
 syn match haskellDecl "\<\(type\|data\)\>\s\+\(\<family\>\)\?"
@@ -90,7 +90,7 @@ syn match haskellLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$"
   \ contains=
   \ haskellTodo,
   \ @Spell
-syn match haskellBacktick "`[A-Za-z_][A-Za-z0-9_\.']*`"
+syn match haskellBacktick "`[A-Za-z_][A-Za-z0-9_\.']*#\?`"
 syn region haskellString start=+"+ skip=+\\\\\|\\"+ end=+"+
   \ contains=@Spell
 syn match haskellIdentifier "[_a-z][a-zA-z0-9_']*" contained
