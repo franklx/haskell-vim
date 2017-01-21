@@ -20,7 +20,7 @@ syn match haskellRecordField contained containedin=haskellBlock
   \ haskellSeparator,
   \ haskellParens
 syn match haskellFuncDef
-  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']\+[^=]*\(\s\+=\|\n\s\+=\)\([^=></:\|\n\)"
+  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']\+[^=]*\(\s\+=\|\n\s\+=\)\([^=></:]\|\n\)"
   \ contains=
   \ haskellDefault,
   \ haskellFuncName,
