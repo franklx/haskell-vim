@@ -20,7 +20,7 @@ syn match haskellRecordField contained containedin=haskellBlock
   \ haskellSeparator,
   \ haskellParens
 syn match haskellFuncDef
-  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']\+[^=]*\(\s\+=\|\n\s\+=\)\([^=></:]\|\n\)"
+  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']\+[^=]*\(\s\+=\|\n\s\+=\|\n\s\+|\|\s\+|\)\([^=></:]\|\n\)"
   \ contains=
   \ haskellDefault,
   \ haskellFuncName,
@@ -52,7 +52,7 @@ syn region haskellForeignImport start="\<foreign\>" end="::" keepend
   \ haskellOperators,
   \ haskellForeignKeywords,
   \ haskellIdentifier
-syn match haskellImport "^\<import\>\s\+\(\<safe\>\s\+\)\?\(\<qualified\>\s\+\)\?.\+\(\s\+\<as\>\s\+.\+\)\?\(\s\+\<hiding\>\)\?"
+syn match haskellImport "^\s*\<import\>\s\+\(\<safe\>\s\+\)\?\(\<qualified\>\s\+\)\?.\+\(\s\+\<as\>\s\+.\+\)\?\(\s\+\<hiding\>\)\?"
   \ contains=
   \ haskellParens,
   \ haskellOperators,
